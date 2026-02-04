@@ -58,8 +58,6 @@ module pipeline_reg #(
 endmodule
           
 
-    end
-
 
 
 

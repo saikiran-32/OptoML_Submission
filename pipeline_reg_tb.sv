@@ -5,7 +5,7 @@ module pipeline_reg_tb;
     parameter DATA_WIDTH = 32;
 
     logic clk;
-    logic rst_n;
+    logic reset_n;
 
     // Input interface
     logic                  in_valid;
@@ -22,7 +22,7 @@ module pipeline_reg_tb;
         .DATA_WIDTH(DATA_WIDTH)
     ) dut (
         .clk       (clk),
-        .rst_n     (rst_n),
+        .reset_n     (reset_n),
         .in_valid  (in_valid),
         .in_ready  (in_ready),
         .in_data   (in_data),
@@ -40,7 +40,7 @@ module pipeline_reg_tb;
 
     // Monitor output
     always_ff @(posedge clk) begin
-        if (!rst_n) begin
+        if (!reset_n) begin
             expect_valid <= 0;
         end else begin
             if (in_valid && in_ready) begin
@@ -68,14 +68,14 @@ module pipeline_reg_tb;
     // Test sequence
     initial begin
         clk = 0;
-        rst_n = 0;
+        reset_n = 0;
         in_valid = 0;
         in_data = 0;
         out_ready = 0;
 
         // Reset
         #20;
-        rst_n = 1;
+        reset_n = 1;
         out_ready = 1;
 
         // -------------------------
